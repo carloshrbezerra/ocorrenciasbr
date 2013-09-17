@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+
+
+	<table-filter match-catalog="ocorrenciasbr" match-name="corveiculo" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="localbr" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="marcadeveiculo" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="municipio" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="ocorrencia" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="ocorrenciaacidente" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="ocorrenciapessoa" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="ocorrenciaveiculo" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="pessoa" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipoacidente" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipoapreensao" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipoareaespecial" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipocomunicacao" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="tipocrime" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipodetencao" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipodocumento" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipoenvolvido" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipolocalidade" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="tipoobra" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipopontomedico" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipopontonotavel" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tiporeceptor" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tiposinalizacao" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipounidadeoperacional" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="tipoveiculo" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="uf" />
+	<table-filter match-catalog="ocorrenciasbr"
+		match-name="unidadeoperacional" />
+	<table-filter match-catalog="ocorrenciasbr" match-name="veiculo" />
+	<table catalog="ocorrenciasbr" name="tipocomunicacao">
+		<column name="tcocodigo"></column>
+		<column name="tcodescricao"></column>
+		<column name="tcoatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipopontomedico">
+		<column name="ttmcodigo"></column>
+		<column name="ttmdescricao"></column>
+		<column name="ttmatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipolocalidade">
+		<column name="ttlcodigo"></column>
+		<column name="ttldescricao"></column>
+		<column name="ttlatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="unidadeoperacional">
+		<column name="uniid"></column>
+		<column name="uniunidade"></column>
+		<column name="unilotacao"></column>
+		<column name="unisigla"></column>
+		<column name="unittucodigo"></column>
+		<column name="uniunidaderesponsavel"></column>
+		<column name="unidenominacao"></column>
+		<column name="uniendereco"></column>
+		<column name="unimunicipio"></column>
+		<column name="unicep"></column>
+		<column name="unitelefone"></column>
+		<column name="uniemail"></column>
+		<column name="unilocal"></column>
+		<column name="unilatitude"></column>
+		<column name="unilongitude"></column>
+		<column name="unihelicoptero"></column>
+		<column name="unitexto"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipodocumento">
+		<column name="ttocodigo"></column>
+		<column name="ttodescricao"></column>
+		<column name="ttoatualiza"></column>
+		<column name="ttorelapreensao"></column>
+		<column name="ttorelrecuperacao"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoobra">
+		<column name="ttbcodigo"></column>
+		<column name="ttbdescricao"></column>
+		<column name="ttbatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tiporeceptor">
+		<column name="ttrcodigo"></column>
+		<column name="ttrdescricao"></column>
+		<column name="ttratualiza"></column>
+		<column name="ttrdelegacia"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoapreensao">
+		<column name="ttpcodigo"></column>
+		<column name="ttpdescricao"></column>
+		<column name="ttpatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="ocorrenciapessoa">
+		<column name="opeid"></column>
+		<column name="opeocoid"></column>
+		<column name="opepesid"></column>
+		<column name="opeportenumero"></column>
+		<column name="opeportevalidade"></column>
+		<column name="opettecodigo"></column>
+		<column name="openaoident"></column>
+		<column name="opeestrangeiro"></column>
+		<column name="opeanexo"></column>
+		<column name="opecondalegadas"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="veiculo">
+		<column name="veiid"></column>
+		<column name="vei.veiano"></column>
+		<column name="veitmvcodigo"></column>
+		<column name="veiqtdocupantes"></column>
+		<column name="veitevcodigo"></column>
+		<column name="veitcvcodigo"></column>
+		<column name="veitvvcodigo"></column>
+		<column name="veidescricao"></column>
+		<column name="veimunicipio"></column>
+		<column name="veitcecodigo"></column>
+		<column name="veimunorigem"></column>
+		<column name="veipaisorigem"></column>
+		<column name="veimundestino"></column>
+		<column name="veipaisdestino"></column>
+		<column name="veitttcodigo"></column>
+		<column name="veitipoproprietario"></column>
+		<column name="veiproprietario"></column>
+		<column name="veioenid"></column>
+		<column name="veisequencial"></column>
+		<column name="veitipoplaca"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="municipio">
+		<column name="tmucodigo"></column>
+		<column name="tmudenominacao"></column>
+		<column name="tmuuf"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="ocorrenciaveiculo">
+		<column name="ocvid"></column>
+		<column name="ocvocoid"></column>
+		<column name="ocvveiid"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipocrime">
+		<column name="ttccodigo"></column>
+		<column name="ttcdescricao"></column>
+		<column name="ttcatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoacidente">
+		<column name="ttacodigo"></column>
+		<column name="ttadescricao"></column>
+		<column name="ttaatualiza"></column>
+		<column name="ttarelacidente"></column>
+		<column name="ttaativo"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoenvolvido">
+		<column name="ttecodigo"></column>
+		<column name="ttedescricao"></column>
+		<column name="tteatualiza"></column>
+		<column name="tteativo"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="corveiculo">
+		<column name="tcecodigo"></column>
+		<column name="tcedescricao"></column>
+		<column name="tceatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="uf">
+		<column name="tufuf"></column>
+		<column name="tufdenominacao"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoareaespecial">
+		<column name="taecodigo"></column>
+		<column name="taedescricao"></column>
+		<column name="taeatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="ocorrencia">
+		<column name="ocoid"></column>
+		<column name="ocolocal"></column>
+		<column name="ocostatus"></column>
+		<column name="ocomunicipio"></column>
+		<column name="ocosentido"></column>
+		<column name="ocodataocorrencia"></column>
+		<column name="ocodataregistro"></column>
+		<column name="ocotipo"></column>
+		<column name="ococomid"></column>
+		<column name="ocoidorigem"></column>
+		<column name="ocodatafim"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tiposinalizacao">
+		<column name="ttscodigo"></column>
+		<column name="ttsdescricao"></column>
+		<column name="ttsatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipodetencao">
+		<column name="ttdcodigo"></column>
+		<column name="ttddescricao"></column>
+		<column name="ttdatualiza"></column>
+		<column name="ttdrelacidente"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="localbr">
+		<column name="lbrid"></column>
+		<column name="lbruf"></column>
+		<column name="lbrbr"></column>
+		<column name="lbrkm"></column>
+		<column name="lbrlatitude"></column>
+		<column name="lbrlongitude"></column>
+		<column name="lbrpnvid"></column>
+		<column name="lbratualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipopontonotavel">
+		<column name="ttncodigo"></column>
+		<column name="ttndescricao"></column>
+		<column name="ttnatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipoveiculo">
+		<column name="tvvcodigo"></column>
+		<column name="tvvdescricao"></column>
+		<column name="tvvatualiza"></column>
+		<column name="tvvrelacidente"></column>
+		<column name="tvvativo"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="ocorrenciaacidente">
+		<column name="oacocoid"></column>
+		<column name="oacttacodigo"></column>
+		<column name="oactcacodigo"></column>
+		<column name="oacdano"></column>
+		<column name="oacdanoterc"></column>
+		<column name="oacdanoamb"></column>
+		<column name="oaclatitude"></column>
+		<column name="oaclongitude"></column>
+		<column name="oacdistab"></column>
+		<column name="oacdistac"></column>
+		<column name="oacdistbc"></column>
+		<column name="oacmodelopista"></column>
+		<column name="oacsentido1"></column>
+		<column name="oacsentido2"></column>
+		<column name="oacqtdfaixa1"></column>
+		<column name="oacqtdfaixa2"></column>
+		<column name="oacacostamento1"></column>
+		<column name="oacacostamento2"></column>
+		<column name="oaccanteiro"></column>
+		<column name="oaclinhacentral"></column>
+		<column name="oacorientpista"></column>
+		<column name="oacgirafundo"></column>
+		<column name="oacversaocroqui"></column>
+		<column name="oacsitio"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="marcadeveiculo">
+		<column name="tmvcodigo"></column>
+		<column name="tmvdescricao"></column>
+		<column name="tmvatualiza"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="pessoa">
+		<column name="pesid"></column>
+		<column name="pesdatanascimento"></column>
+		<column name="pesnaturalidade"></column>
+		<column name="pesnacionalidade"></column>
+		<column name="pessexo"></column>
+		<column name="pesteccodigo"></column>
+		<column name="pestgicodigo"></column>
+		<column name="pesmunicipio"></column>
+		<column name="pestopcodigo"></column>
+		<column name="pesmunicipioori"></column>
+		<column name="pespaisori"></column>
+		<column name="pesmunicipiodest"></column>
+		<column name="pespaisdest"></column>
+		<column name="pesveiid"></column>
+		<column name="pesestadofisico"></column>
+		<column name="pescinto"></column>
+		<column name="pescapacete"></column>
+		<column name="peshabilitado"></column>
+		<column name="pessocorrido"></column>
+		<column name="pesdormindo"></column>
+		<column name="pesalcool"></column>
+		<column name="peskmpercorre"></column>
+		<column name="peshorapercorre"></column>
+		<column name="pescategcnh"></column>
+		<column name="pesufcnh"></column>
+		<column name="pespaiscnh"></column>
+		<column name="pesdatahabil"></column>
+		<column name="pesdatavalidade"></column>
+		<column name="pesidade"></column>
+		<column name="pesaltura"></column>
+		<column name="pespeso"></column>
+		<column name="pescicatriz"></column>
+		<column name="pestatuagem"></column>
+		<column name="pessinal"></column>
+		<column name="peslesao"></column>
+		<column name="pestcccodigo"></column>
+		<column name="pestctcodigo"></column>
+		<column name="pestclcodigo"></column>
+		<column name="pesoenid"></column>
+	</table>
+	<table catalog="ocorrenciasbr" name="tipounidadeoperacional">
+		<column name="ttucodigo"></column>
+		<column name="ttudescricao"></column>
+		<column name="ttuatualiza"></column>
+	</table>
+</hibernate-reverse-engineering>
