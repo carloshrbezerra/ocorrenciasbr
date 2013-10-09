@@ -14,6 +14,7 @@ import br.com.ocorrenciasbr.vo.OcorrenciaTotalAlcoolizadaVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalSemCapaceteVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalSemCintoVO;
+import br.com.ocorrenciasbr.vo.OcorrenciaTotalTipoVeiculoVO;
 
 public class OcorrenciasDAO {
 	
@@ -196,6 +197,52 @@ public class OcorrenciasDAO {
         	ConnectionUtil.close(connection);
         }
         return totalOcorrenciaSemCapaceteVO;
+    }
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de ocorrencias por tipo de veciulo
+     * 
+     * @return List<PessoaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalTipoVeiculoVO> getTotalOcorrenciaTipoVeiculo() throws SQLException {
+        
+    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia from ocorrencia o  "
+    					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
+    					+ " inner join veiculo v on v.veiid = ov.ocvveiid "
+    					+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
+    		 	        + " where veitvvcodigo in (1,7,14,4,3) "
+    		 	        + " group by v.veitvvcodigo"; 
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalTipoVeiculoVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalTipoVeiculoVO>();
+        OcorrenciaTotalTipoVeiculoVO ocorrenciatipoVeiculoVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciatipoVeiculoVO = new OcorrenciaTotalTipoVeiculoVO();
+            	
+            	ocorrenciatipoVeiculoVO.setCodigo(rs.getInt("veitvvcodigo"));
+            	ocorrenciatipoVeiculoVO.setDescricao(rs.getString("tvvdescricao"));
+            	ocorrenciatipoVeiculoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	totalOcorrenciatipoVeiculoVO.add(ocorrenciatipoVeiculoVO);
+            	
+            }
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciatipoVeiculoVO;
     }
     
     
