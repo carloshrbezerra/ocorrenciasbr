@@ -116,7 +116,7 @@ public class OcorrenciasDAO {
      * 
      * Retorna o Total de ocorrencias com pessoas sem cinto de segurança
      * 
-     * @return List<PessoaTotalAlcoolizadaVO>
+     * @return List<OcorrenciaTotalSemCintoVO>
      * @throws SQLException
      * 
      * @author Carlos Bezerra
@@ -160,7 +160,7 @@ public class OcorrenciasDAO {
      * 
      * Retorna o Total de ocorrencias com pessoas sem capacete
      * 
-     * @return List<PessoaTotalAlcoolizadaVO>
+     * @return List<OcorrenciaTotalSemCapaceteVO>
      * @throws SQLException
      * 
      * @author Carlos Bezerra
@@ -205,7 +205,7 @@ public class OcorrenciasDAO {
      * 
      * Retorna o Total de ocorrencias por tipo de veciulo
      * 
-     * @return List<PessoaTotalAlcoolizadaVO>
+     * @return List<OcorrenciaTotalTipoVeiculoVO>
      * @throws SQLException
      * 
      * @author Carlos Bezerra
