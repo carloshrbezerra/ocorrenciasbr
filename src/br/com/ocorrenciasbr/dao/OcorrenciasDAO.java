@@ -35,7 +35,7 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalEstadoVO> getTotalOcorrenciaEstado() throws SQLException {
+    public List<OcorrenciaTotalEstadoVO> getTotalOcorrenciaEstado(){
         
     	String query = "select m.tmuuf,tmudenominacao, count(o.ocoid) as total_ocorrencia "
     		 	        + " from ocorrencia o inner join municipio m on m.tmucodigo = o.ocomunicipio "
@@ -59,6 +59,8 @@ public class OcorrenciasDAO {
             	totalEstadoVO.add(OcorrenciaTotalEstadoVO);
             	
             }
+        }catch(SQLException e){
+        	e.printStackTrace();
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
@@ -77,7 +79,7 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalAlcoolizadaVO> getTotalOcorrenciaPessoasAlcoolizadas() throws SQLException {
+    public List<OcorrenciaTotalAlcoolizadaVO> getTotalOcorrenciaPessoasAlcoolizadas(){
         
     	String query = "select  p.pescapacete,m.tmuuf,count(o.ocoid) as total_ocorrencias from ocorrencia o "
     					+ " inner join ocorrenciapessoa op on o.ocoid = op.opeocoid "
@@ -103,6 +105,8 @@ public class OcorrenciasDAO {
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
             	
             }
+        } catch(SQLException e){
+        	e.printStackTrace();
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
@@ -121,7 +125,7 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalSemCintoVO> getTotalOcorrenciaPessoasSemCinto() throws SQLException {
+    public List<OcorrenciaTotalSemCintoVO> getTotalOcorrenciaPessoasSemCinto(){
         
     	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_pessoas from pessoa p "
     					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
@@ -147,6 +151,8 @@ public class OcorrenciasDAO {
             	totalOcorrenciaSemCintoVO.add(ocorrenciaSemCintoVO);
             	
             }
+        } catch(SQLException e){
+        	e.printStackTrace();
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
@@ -165,7 +171,7 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalSemCapaceteVO> getTotalOcorrenciaPessoasSemCapacete() throws SQLException {
+    public List<OcorrenciaTotalSemCapaceteVO> getTotalOcorrenciaPessoasSemCapacete(){
         
     	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_pessoas from pessoa p "
     					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
@@ -191,6 +197,8 @@ public class OcorrenciasDAO {
             	totalOcorrenciaSemCapaceteVO.add(ocorrenciaSemCapaceteVO);
             	
             }
+        } catch(SQLException e){
+        	e.printStackTrace();
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
@@ -210,7 +218,7 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalTipoVeiculoVO> getTotalOcorrenciaTipoVeiculo() throws SQLException {
+    public List<OcorrenciaTotalTipoVeiculoVO> getTotalOcorrenciaTipoVeiculo(){
         
     	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia from ocorrencia o  "
     					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
@@ -237,7 +245,11 @@ public class OcorrenciasDAO {
             	totalOcorrenciatipoVeiculoVO.add(ocorrenciatipoVeiculoVO);
             	
             }
-        } finally {
+        }catch (SQLException e){
+        	e.printStackTrace();
+        } 
+        
+        finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
         	ConnectionUtil.close(connection);
