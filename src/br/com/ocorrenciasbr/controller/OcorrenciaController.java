@@ -5,31 +5,41 @@ import java.io.PrintWriter;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ocorrenciasbr.dao.OcorrenciasDAO;
+import br.com.ocorrenciasbr.vo.OcorrenciaTotalAlcoolizadaVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
 
 
 public class OcorrenciaController extends HttpServlet{
 	
 	
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
 		OcorrenciasDAO ocorrenciaDAO = new OcorrenciasDAO();
 		
 		//Numeto total de ocorrencias por estado
 		List<OcorrenciaTotalEstadoVO> listOcorrenciaTotalEstado  =   ocorrenciaDAO.getTotalOcorrenciaEstado();
 		
+		request.setAttribute("listOcorrenciaTotalEstado", listOcorrenciaTotalEstado);
 		
 		
+		OcorrenciasDAO ocorrenciaDAO2 = new OcorrenciasDAO();
 		
-		PrintWriter out = response.getWriter();
+		//Numeto total de ocorrencias por pessoa alcoolizadas
+		List<OcorrenciaTotalAlcoolizadaVO > listOcorrenciaTotalPessoalAcool  =   ocorrenciaDAO2.getTotalOcorrenciaPessoasAlcoolizadas();
 		
-		out.println("ocorrencias br");
+		request.setAttribute("listOcorrenciaTotalPessoalAcool", listOcorrenciaTotalPessoalAcool);
+				
+		
+		
+		RequestDispatcher view = request.getRequestDispatcher("pages/ocorrencias/ocorrencias.jsp");
+		view.forward(request, response);
 		
 		
 	}

@@ -3,16 +3,17 @@ package br.com.ocorrenciasbr.vo;
 public class OcorrenciaTotalEstadoVO {
 	
 	
-	private String municipio = "";
+	private String estado = "";
 	private Integer totalOcorrencia;
+	private String municipio;
 	
 	
 	
-	public String getMunicipio() {
-		return municipio;
+	public String getEstado() {
+		return estado;
 	}
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	public Integer getTotalOcorrencia() {
 		return totalOcorrencia;

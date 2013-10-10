@@ -54,7 +54,7 @@ public class OcorrenciasDAO {
             	
             	OcorrenciaTotalEstadoVO = new OcorrenciaTotalEstadoVO();
             	
-            	OcorrenciaTotalEstadoVO.setMunicipio(rs.getString("tmuuf"));
+            	OcorrenciaTotalEstadoVO.setEstado(rs.getString("tmuuf"));
             	OcorrenciaTotalEstadoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	totalEstadoVO.add(OcorrenciaTotalEstadoVO);
             	
@@ -81,7 +81,7 @@ public class OcorrenciasDAO {
      */
     public List<OcorrenciaTotalAlcoolizadaVO> getTotalOcorrenciaPessoasAlcoolizadas(){
         
-    	String query = "select  p.pescapacete,m.tmuuf,count(o.ocoid) as total_ocorrencias from ocorrencia o "
+    	String query = "select  p.pescapacete,m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
     					+ " inner join ocorrenciapessoa op on o.ocoid = op.opeocoid "
     					+ " inner join pessoa p on p.pesid = op.opepesid "
     					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
@@ -100,8 +100,8 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalAlcoolizadaVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setMunicipio(rs.getString("tmuuf"));
-            	ocorrenciaTotalAlcoolizadaVO.setTotalPessoa(rs.getInt("totalPessoa"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
             	
             }
@@ -127,7 +127,7 @@ public class OcorrenciasDAO {
      */
     public List<OcorrenciaTotalSemCintoVO> getTotalOcorrenciaPessoasSemCinto(){
         
-    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_pessoas from pessoa p "
+    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
     					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
     					+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
     					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
@@ -146,8 +146,8 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaSemCintoVO = new OcorrenciaTotalSemCintoVO();
             	
-            	ocorrenciaSemCintoVO.setMunicipio(rs.getString("tmuuf"));
-            	ocorrenciaSemCintoVO.setTotalPessoa(rs.getInt("totalPessoa"));
+            	ocorrenciaSemCintoVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaSemCintoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	totalOcorrenciaSemCintoVO.add(ocorrenciaSemCintoVO);
             	
             }
@@ -173,7 +173,7 @@ public class OcorrenciasDAO {
      */
     public List<OcorrenciaTotalSemCapaceteVO> getTotalOcorrenciaPessoasSemCapacete(){
         
-    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_pessoas from pessoa p "
+    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
     					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
     					+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
     					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
@@ -192,8 +192,8 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaSemCapaceteVO = new OcorrenciaTotalSemCapaceteVO();
             	
-            	ocorrenciaSemCapaceteVO.setMunicipio(rs.getString("tmuuf"));
-            	ocorrenciaSemCapaceteVO.setTotalPessoa(rs.getInt("totalPessoa"));
+            	ocorrenciaSemCapaceteVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaSemCapaceteVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	totalOcorrenciaSemCapaceteVO.add(ocorrenciaSemCapaceteVO);
             	
             }
