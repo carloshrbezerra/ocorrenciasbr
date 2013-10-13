@@ -24,13 +24,4 @@
     <url-pattern>/ocorrencias.do</url-pattern>
   </servlet-mapping>
 	
-  <jsp-config>
-    <jsp-property-group>
-      <description>Configuracao do header, menu e footer do template</description>
-      <url-pattern>*.jsp</url-pattern>
-      <include-prelude>/template/header.jspf</include-prelude>
-      <include-coda>/template/footer.jspf</include-coda>
-    </jsp-property-group>
-  </jsp-config>
-
 </web-app>
