@@ -1,0 +1,134 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+#header{
+	height:	150px;
+	min-width: 100%;
+	margin: 0 auto;
+	background-color: #272b30;
+}
+
+#header #logo{
+	float: left;
+	height: auto;
+	min-height: 158px;		
+}
+
+#header #menu{
+	float: right;
+	width: 20%;
+}
+
+#background{
+	background: url("../images/background.png");
+}
+#imagem1 a img{
+	float: left;
+	margin: 0 auto;
+}
+div#error_geolocalization{
+	font-size: 18px;
+	text-align: center;
+	text-shadow: green;
+	background-color: #f2f2f2;
+}
+
+.pages-form{
+  height: 260px;
+  min-width: 260px;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+	#header #logo{
+		float: left;
+		height: auto;
+		width: 80%;
+	}
+	#header #menu{
+		float: left;
+		height: auto;
+		width: 20%;
+	}
+}
+@media (max-width: 480px) {
+	#header{
+		height: 140px;
+	}
+	#header #logo{
+		float: left;
+		height: auto;
+		width: 80%;
+	}
+	#header #logo a img{
+		float: left;
+		height: auto;
+		width: 100%;
+	}
+
+	#header #menu{
+		float: left;
+		height: auto;
+		width: 20%;
+	}
+	#header #menu a img{
+		float: left;
+		height: auto;
+		width: 100%;
+	}
+}
+@media (max-width: 320px) {
+	#header{
+		height: 70px;
+	}
+	#header #logo{
+		float: left;
+		height: auto;
+		width: 80%;
+	}
+	#header #logo a img{
+		float: left;
+		height: auto;
+		width: 100%;
+	}
+
+	#header #menu{
+		float: left;
+		height: auto;
+		width: 20%;
+	}
+	#header #menu a img{
+		float: left;
+		height: auto;
+		width: 100%;
+	}
+}
+
+.position{
+	margin: 0 auto;
+	text-align: center;
+}
+.imgpos {
+	margin: 0 auto;
+	text-align: center;
+	max-height: 330px;
+}
+.grafico { 
+position: relative; /* para corrigir problema no IE */
+width: 80%;
+border: 1px solid #B1D632;
+padding: 2px;
+}
+.grafico .barra {
+display: block;
+position: relative;
+background: #B1D632;
+text-align: center;
+color: #333;
+height: 2em;
+line-height: 2em;
+}
+
+.graph .bar span { position: absolute; left: 1em; } /* para corrigir problema no IE */
