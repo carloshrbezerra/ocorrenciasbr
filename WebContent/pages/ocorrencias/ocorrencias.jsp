@@ -16,7 +16,7 @@
 <script src="template/Chart/Chart.js"></script>
 <script src="template/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
-
+<!--  -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
 <script>
 	window.jQuery
