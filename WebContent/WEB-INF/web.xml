@@ -23,5 +23,5 @@
     <servlet-name>ocorrencia</servlet-name>
     <url-pattern>/ocorrencias.do</url-pattern>
   </servlet-mapping>
-	
+		
 </web-app>

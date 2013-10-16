@@ -18,7 +18,6 @@
 		</div> 
 	</div><!-- header -->
 		
-		<div id="imagem1">
-				<a><img src="template/images/image.png" class="img-responsive" alt="Responsive image"></a>
-		</div>	
+	<img src="template/images/image.png" class="img-responsive" alt="Responsive image">
+	
 </div>
