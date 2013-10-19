@@ -6,177 +6,100 @@
 <html>
 <head>
 <title>Ocorrencias BR</title>
-
+<meta charset="UTF-8">
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" href="template/css/ocorrenciasbr.css">
-<link rel="stylesheet" href="template/css/united_bootstrap.css">
-<link rel="stylesheet" href="template/css/styles_charts.css">
-<script src="template/Chart/Chart.js"></script>
-<script src="template/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="template/css/ocorrenciasbr.css">
+<link rel="stylesheet" type="text/css" href="template/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="template/css/styles_charts.css">
 
-<!--  -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.js"></script>
-<script>
-	window.jQuery
-			|| document
-					.write('<script src="template/js/vendor/jquery-1.10.1.js"><\/script>')
-</script>
+<script>window.jQuery || document.write('<script src="template/js/vendor/jquery-1.10.1.js"><\/script>')</script>
 <script src="template/js/vendor/bootstrap.min.js"></script>
-<script src="template/js/main.js"></script>
-<script type="text/javascript">
-	function mostra(id) {
-		alert(id)
-		//var frm = document.getElementById(id);
-		//if(frm.style.visibility == 'hidden')
-		//	frm.style.visibility = 'visible';
-		//else
-		//	frm.style.visibility = 'hidden';
-	}
-</script>
 </head>
 
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div id="logo">
+			<a href="index.jsp"> <img class="img-responsive"
+				src="template/images/logo.png">
+			</a>
+		</div>
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Ocorrências</span> <span class="icon-bar"></span>
+				<span class="icon-bar"></span> <span class="icon-bar"></span>
+			</button>
+			<!-- 				<a class="navbar-brand" href="#">Brand</a> -->
+		</div>
 
-	<div class="container">
-		<header>
-			<jsp:include page="/template/header-dropdown.jsp"></jsp:include>
-		</header>
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<!-- 				<ul class="nav navbar-nav">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+				</ul>-->
+			<!-- 				<form class="navbar-form navbar-left" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				-->
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Contato</a></li>
+				<li class="dropdown"><a href="#" class="dropdown-toggle"
+					data-toggle="dropdown">Ocorrências<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">2007</a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<!-- /.navbar-collapse -->
+	</nav>
+
+
+	<div id="background">
+
 		<div id="content">
-			<div id="background">
-				<div class="section">
 
-					<h4>Total Ocorrencias X Estado</h4>
+			<div class="section">
 
-					<ul class="timeline">
-						<c:forEach var="o" items="${listOcorrenciaTotalEstado}">
-							<li>
-								<!-- <a href="pages/ocorrencias/estados.jsp?estado=${o.estado}" title="${o.totalOcorrencia}"> -->
-								<a data-toggle="modal" href="#estado${o.estado}"
-								title="${o.totalOcorrencia}"> <span class="lb"><c:out
-											value="${o.estado}" /></span> <span class="count"
-									style="width: ${((o.totalOcorrencia / 150)  >= 100) ? 100 : o.totalOcorrencia / 150}%"><c:out
-											value="${o.totalOcorrencia}" /></span>
-							</a>
+				<h4>Total Ocorrencias X Estado</h4>
 
-								<div class="modal fade" id="estado${o.estado}" tabindex="-1"
-									role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<h4 class="modal-title">${o.estado}</h4>
-											</div>
-											<div class="modal-body">
-												<!-- GRAFICOS AQUI -->
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico1${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico2${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico3${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico4${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico5${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-												<div class="position col-lg-4 col-md-4 col-sm-6 col-xs-12">
-													<div id="grafico6${o.estado}" class="position grafico">
-														<h2>TITULO</h2>
-														<h3>${o.totalOcorrencia}</h3>
-													</div>
-													<!-- height: 200px; -->
-												</div>
-
-											</div>
-											<div class="modal-footer">
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Fechar</button>
-											</div>
-										</div>
-										<!-- /.modal-content -->
-									</div>
-									<!-- /.modal-dialog -->
-								</div> <!-- /.modal -->
-
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
+				<ul class="timeline">
+					<c:forEach var="o" items="${listOcorrenciaTotalEstado}">
+						<li>
+							<a data-toggle="modal" href="pages/ocorrencias/estados.jsp"
+							title="${o.totalOcorrencia}"> <span class="lb"><c:out
+										value="${o.estado}" /></span> <span class="count"
+								style="width: ${((o.totalOcorrencia / 150)  >= 100) ? 100 : o.totalOcorrencia / 150}%"><c:out
+										value="${o.totalOcorrencia}" /></span>
+						</a>
+						</li>
+					</c:forEach>
+				</ul>
 			</div>
 		</div>
-	</div>
-	<!-- GRAFICOS DE EXEMPLO BARRA 
-<div class="section">
+		<!-- content -->
+		<footer>
+			<div id="footer">
+				<div class="text-center">
+					<p>Ocorrências BR &copy;</p>
+				</div>
+			</div>
+		</footer>
 
-	 <h4>Total Ocorrencias X Estado</h4>
-	
-	<ul class="timeline">
-	
-				
-		<c:forEach var="o" items="${listOcorrenciaTotalEstado}">
-				
-		
-	      <li>
-	        <a href="http://www.example.com/2007/dec/1/" title="${o.totalOcorrencia}">
-	          <span class="label"><c:out value="${o.estado}" /></span>
-	          <span class="count" style="height: ${((o.totalOcorrencia / 150)  >= 100) ? 100 : o.totalOcorrencia / 150}%"><c:out value="${o.totalOcorrencia}" /></span>
-	        </a>
-	      </li>
-				
-				
-		</c:forEach>
-	
-	</ul>
-
-</div>
-
-
-<div class="section">
-
-	 <h4>Total Ocorrencias X Pessoas Alcoolizadas</h4>
-	
-	<c:forEach var="p" items="${listOcorrenciaTotalPessoalAcool}">
-	
-	<ul class="chartlist">
-      <li>
-        <a href="http://www.example.com/fruits/apples/"><c:out value="${p.estado}" /></a> 
-        <span class="count"><c:out value="${p.totalOcorrencia}" /></span>
-        <span class="index" style="width: ${p.totalOcorrencia}%">(<c:out value="${p.totalOcorrencia}" />)</span>
-      </li>
-    </ul>
-    
-    </c:forEach>
-    
-</div>
--->
-
+	</div><!-- background -->
 
 </body>
 </html>

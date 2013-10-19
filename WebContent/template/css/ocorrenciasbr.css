@@ -3,146 +3,100 @@
 	margin: 0;
 	padding: 0;
 }
-#header{
-	height:	150px;
-	min-width: 100%;
-	margin: 0 auto;
-	background-color: #272b30;
-}
-
-#header #logo{
-	float: left;
-	height: auto;
-	min-height: 150px;
-	margin-bottom: -10px;
-	width: 80%;		
-}
-
-#header #menu{
-	float: left;
-	height: 150px;
-	width: 20%;
-}
-
-#content{
-	padding-left: inherit;
-	padding-right: inherit;
-	margin-left: inherit;
-	margin-right: inherit;
-}
-
-#footer{
-}
 #background{
-	background-image: url("../images/background.png");
 	height: auto;
+	margin-top: -20px;
+	background-image: url("../images/background.png");
 }
-div#error_geolocalization{
-	font-size: 18px;
-	text-align: center;
-	text-shadow: green;
-	background-color: #f2f2f2;
-}
-
-.pages-form{
-  height: 260px;
-  min-width: 260px;
-  color: inherit;
-}
-
-@media (max-width: 768px) {
-	#header #logo{
-		float: left;
-		height: auto;
-		min-height: 150px;
-		margin-bottom: -10px;		
-	}
-	#header #menu{
-		float: right;
-		height: auto;
-		max-height: 150px;
-		width: 20%;
-	}
-}
-@media (max-width: 480px) {
-	#header{
-		height: 140px;
-	}
-	#header #logo{
-		float: left;
-		height: auto;
-		width: 80%;
-	}
-	#header #logo a img{
-		float: left;
-		height: auto;
-		width: 100%;
-	}
-
-	#header #menu{
-		float: left;
-		height: auto;
-		width: 20%;
-	}
-	#header #menu a img{
-		float: left;
-		height: auto;
-		width: 100%;
-	}
-}
-@media (max-width: 320px) {
-	#header{
-		height: 70px;
-	}
-	#header #logo{
-		float: left;
-		height: auto;
-		width: 80%;
-	}
-	#header #logo a img{
-		float: left;
-		height: auto;
-		width: 100%;
-	}
-
-	#header #menu{
-		float: left;
-		height: auto;
-		width: 20%;
-	}
-	#header #menu a img{
-		float: left;
-		height: auto;
-		width: 100%;
-	}
-}
-
-.position{
+.box-link-text a{
 	margin: 0 auto;
 	text-align: center;
+	color: #323232;
 }
 .imgpos {
 	margin: 0 auto;
 	text-align: center;
-	max-height: 330px;
+	max-height: 300px;
 }
-.grafico { 
-	position: relative; /* para corrigir problema no IE */
-	height: 200px;
-	/*width: 200px;*/
-	/*border: 1px solid #e5e5e5;*/
-	margin-top: 15px;
-	margin-bottom: 15px;
-	background-color: pink;
+.box{
+	margin-top: 10px;
+	margin-left: 10px;
 }
-.grafico .barra {
-	display: block;
-	position: relative;
-	background: #B1D632;
+.box-line-white{
+	height: 95%;
+	margin:5px;
+	border:5px solid white;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+.box-line-black{
+	height: 150px;
+	width: 150px;
+	margin:5px;
+	border:5px solid black;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+.box-circle-red{
+	height: 100%;
+	width: 100%;
+	border:10px solid red;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+.box-blue{
+	float: left;
+	margin: 10px;
 	text-align: center;
-	color: #333;
-	height: 2em;
-	line-height: 2em;
+	height: 200px;
+	width: 150px;
+	background-color: #00BFFF;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
 }
-
-.graph .bar span { position: absolute; left: 1em; } /* para corrigir problema no IE */
+.box-green{
+	float: left;
+	margin: 10px;
+	text-align: center;
+	height: 200px;
+	width: 300px;
+	background-color: #228B22;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+.box-green *{
+	color: white;
+}
+.box-yellow{
+	float: left;
+	margin: 10px;
+	text-align: center;
+	background-color: yellow;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	transform:rotate(45deg);
+	-ms-transform:rotate(45deg); /* IE 9 */
+	-webkit-transform:rotate(45deg); /* Safari and Chrome */
+}
+.box-line-black *{
+	transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg); /* IE 9 */
+	-webkit-transform:rotate(-45deg); /* Safari and Chrome */
+}
+.box-white{
+	float: left;
+	margin: 10px;
+	text-align: center;
+	height: 200px;
+	width: 200px;
+	background-color: white;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
