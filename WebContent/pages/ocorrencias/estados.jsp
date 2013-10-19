@@ -5,17 +5,17 @@
 
 <html>
 <head>
-<title>Ocorrencias BR</title>
-<meta charset="UTF-8">
-<meta name="description" content="">
-<meta name="viewport" content="width=device-width">
+	<title>Ocorrencias BR</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
 
-<link rel="stylesheet" type="text/css" href="../../template/css/ocorrenciasbr.css">
-<link rel="stylesheet" type="text/css" href="../../template/css/bootstrap.css">
-<link rel="stylesheet" type="text/css" href="../../template/css/styles_charts.css">
+	<link rel="stylesheet" type="text/css" href="../../template/css/ocorrenciasbr.css">
+	<link rel="stylesheet" type="text/css" href="../../template/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="../../template/css/styles_charts.css">
 
-<script>window.jQuery || document.write('<script src="../../template/js/vendor/jquery-1.10.1.js"><\/script>')</script>
-<script src="../../template/js/vendor/bootstrap.min.js"></script>
+	<script>window.jQuery || document.write('<script src="../../template/js/vendor/jquery-1.10.1.js"><\/script>')</script>
+	<script src="../../template/js/vendor/bootstrap.min.js"></script>
 </head>
 
 <body>
