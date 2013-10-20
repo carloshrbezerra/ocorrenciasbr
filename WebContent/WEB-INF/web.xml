@@ -21,24 +21,14 @@
   </servlet-mapping>
   
   
-  
   <servlet>
-    <servlet-name>page</servlet-name>
-    <servlet-class>br.com.ocorrenciasbr.controller.PageController</servlet-class>
+    <servlet-name>estado</servlet-name>
+    <servlet-class>br.com.ocorrenciasbr.controller.EstadoController</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>page</servlet-name>
-    <url-pattern>/teste</url-pattern>
-  </servlet-mapping>
-  
-  
-  
-  <servlet>
-    <servlet-name>ocorrenciaEstado</servlet-name>
-    <servlet-class>br.com.ocorrenciasbr.controller.OcorrenciaEstadoController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ocorrenciaEstado</servlet-name>
+    <servlet-name>estado</servlet-name>
     <url-pattern>/estado.do</url-pattern>
   </servlet-mapping>
+  
+  
 </web-app>

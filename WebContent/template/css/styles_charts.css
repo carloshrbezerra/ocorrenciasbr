@@ -40,7 +40,7 @@
     	display: block;
     	position: absolute; 
     	height: 99%;
-    	width:5%;
+    	width:10%;
 	    background-color: #fff;
     }
     .timeline li a {
@@ -48,7 +48,7 @@
       display: block;
       position: relative;
       height: 40px;
-      width: 95%;
+      width: 90%;
       color: #fff;
     }
     .timeline li a .count { 
@@ -63,13 +63,14 @@
     }
     .timeline li .value {
     	float: right;
-    	right: 3%;
+    	right: 1%;
     	display: inline;
     	position: absolute;
-    	color: #333;
-    	
+    	width: 60px;
     	padding: 2px;
-		border:2px solid #333;
+    	margin-top: 2px;
+    	color: #fff;
+		border:2px solid #fff;
 		-webkit-border-radius: 10px;
 		-moz-border-radius: 10px;
 		border-radius: 10px;

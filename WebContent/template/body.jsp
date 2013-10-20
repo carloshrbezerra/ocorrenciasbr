@@ -4,7 +4,7 @@
 				<div class="row ">
 					<div class="box-link-text">
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="box-gold">
+						<div class="box-first">
 							<a href="#graficos"> <!-- <img class="img-responsive imgpos"
 								height="200px" width="200px" src="template/images/chart.png"> -->
 								<h4>Graficos por Região</h4>

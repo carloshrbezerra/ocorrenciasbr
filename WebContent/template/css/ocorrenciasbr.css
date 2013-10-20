@@ -43,6 +43,9 @@ body{
 		-moz-transform: rotate(2deg);
 	}
 }
+.logo img{
+	top: 20px;
+}
 .background{
 	height: auto;
 	margin-top: -20px;
@@ -130,7 +133,7 @@ body{
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 }
-.box-gold{
+.box-first{
 	float: left;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -139,12 +142,7 @@ body{
 	text-align: center;
 	height: 200px;
 	width: 100%;
-	background: transparent;
-	-webkit-border-radius: 10px;
-	-moz-border-radius: 10px;
-	border-radius: 10px;
-	-webkit-box-shadow: 0px 0px 1px #000;
-	-moz-box-shadow: 0px 0px 1px #000; 
+	background: #FFCC66;
 }
 .box-blue{
 	float: left;
@@ -198,4 +196,54 @@ body{
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
+}
+/* ICONES - PAGE ESTADO*/
+.icon-cinto{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/cinto_seguranca.png") no-repeat center;
+}
+.icon-capacete{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/capacete.png") no-repeat center;
+}
+.icon-carro{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/carro.png") no-repeat center;
+}
+.icon-moto{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100px;
+	background: url("../images/moto.png") no-repeat center;
+}
+.icon-alcool{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100px;
+	background: url("../images/alcool.png") no-repeat center;
+}
+.icon-homem{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100px;
+	background: url("../images/homem.png") no-repeat center;
+}
+.icon-mulher{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100px;
+	background: url("../images/mulher.png") no-repeat center;
 }

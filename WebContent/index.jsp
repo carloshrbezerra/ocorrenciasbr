@@ -5,7 +5,7 @@
 
 <html>
 <head>
-	<title>Ocorrencias BR</title>
+	<title>Ocorrências BR</title>
 	
 	<meta charset="UTF-8">
 	<meta name="description" content="">
@@ -17,8 +17,8 @@
 	<link rel="stylesheet" type="text/css" href="template/css/styles_charts.css">
 	<link rel="stylesheet" type="text/css" href="template/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="template/css/component.css" />
-	<script src="template/js/modernizr.custom.js"></script>
- 
+	<script src="js/modernizr.custom.js"></script>
+
 	<script>window.jQuery || document.write('<script src="template/js/vendor/jquery-1.10.1.js"><\/script>')</script>
 	<script src="template/js/vendor/bootstrap.min.js"></script>
 
