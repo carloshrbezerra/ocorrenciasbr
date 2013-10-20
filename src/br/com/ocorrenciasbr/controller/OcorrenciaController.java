@@ -27,21 +27,13 @@ public class OcorrenciaController extends HttpServlet{
 		List<OcorrenciaTotalEstadoVO> listOcorrenciaTotalEstado  =   ocorrenciaDAO.getTotalOcorrenciaEstado();
 		
 		request.setAttribute("listOcorrenciaTotalEstado", listOcorrenciaTotalEstado);
+			
+		request.setAttribute("page", "template/body.jsp");
 		
-		
-		OcorrenciasDAO ocorrenciaDAO2 = new OcorrenciasDAO();
-		
-		//Numeto total de ocorrencias por pessoa alcoolizadas
-		List<OcorrenciaTotalAlcoolizadaVO > listOcorrenciaTotalPessoalAcool  =   ocorrenciaDAO2.getTotalOcorrenciaPessoasAlcoolizadas();
-		
-		request.setAttribute("listOcorrenciaTotalPessoalAcool", listOcorrenciaTotalPessoalAcool);
-				
-		
-		
-		RequestDispatcher view = request.getRequestDispatcher("pages/ocorrencias/ocorrencias.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
-		
-		
+		 
+			
 	}
 	
 	

@@ -3,10 +3,50 @@
 	margin: 0;
 	padding: 0;
 }
-#background{
+body{
+	 padding-top: 135px; 
+}
+@media screen and (max-width: 400px) {
+	body{
+	 padding-top: 110px;
+	}
+}
+@-webkit-keyframes pendura {
+	from {
+		-webkit-transform: rotate(45deg);
+	}
+	to {
+		-webkit-transform: rotate(60deg);
+	}
+}
+@-moz-keyframes pendura {
+	from {
+		-moz-transform: rotate(45deg);
+	}
+	to {
+		-moz-transform: rotate(60deg);
+	}
+}
+@-webkit-keyframes pendura2 {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(2deg);
+	}
+}
+@-moz-keyframes pendura2 {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(2deg);
+	}
+}
+.background{
 	height: auto;
 	margin-top: -20px;
-	background-image: url("../images/background.png");
+/*	background-image: url("../images/background.png");*/
 }
 .box-link-text a{
 	margin: 0 auto;
@@ -19,8 +59,7 @@
 	max-height: 300px;
 }
 .box{
-	margin-top: 10px;
-	margin-left: 10px;
+	margin: 0 auto;
 }
 .box-line-white{
 	height: 95%;
@@ -31,6 +70,14 @@
 	border-radius: 30px;
 }
 .box-line-black{
+	height: 95%;
+	margin:5px;
+	border:5px solid black;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+.box-line-black-rot{
 	height: 150px;
 	width: 150px;
 	margin:5px;
@@ -39,42 +86,94 @@
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 }
+.box-line-black-rot *{
+	transform:rotate(-45deg);
+	-ms-transform:rotate(-45deg); /* IE 9 */
+	-webkit-transform:rotate(-45deg); /* Safari and Chrome */
+}
 .box-circle-red{
 	height: 100%;
 	width: 100%;
-	border:10px solid red;
+	border:15px solid red;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
 }
-.box-blue{
-	float: left;
-	margin: 10px;
-	text-align: center;
-	height: 200px;
-	width: 150px;
-	background-color: #00BFFF;
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	border-radius: 30px;
+.box-green:hover, .box-blue:hover , .box-circle-white:hover{
+	-webkit-box-shadow: 0px 0px 15px #000;
+	-moz-box-shadow: 0px 0px 15px #000; 
+	-webkit-animation: pendura2 2s alternate ease infinite;
+	-moz-animation: pendura2 2s alternate ease infinite;
+	-o-animation: pendura2 2s alternate ease infinite;
+}
+.box-yellow:hover{
+	-webkit-box-shadow: 0px 0px 15px #000;
+	-moz-box-shadow: 0px 0px 15px #000; 
+	-webkit-animation: pendura 2s alternate ease infinite;
+	-moz-animation: pendura 2s alternate ease infinite;
+	-o-animation: pendura 2s alternate ease infinite;
+}
+.box-green *{
+	color: white;
 }
 .box-green{
 	float: left;
-	margin: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
 	text-align: center;
 	height: 200px;
-	width: 300px;
+	width: 100%;
 	background-color: #228B22;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 }
-.box-green *{
-	color: white;
+.box-gold{
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	height: 200px;
+	width: 100%;
+	background: transparent;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 0px 1px #000;
+	-moz-box-shadow: 0px 0px 1px #000; 
+}
+.box-blue{
+	float: left;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	height: 200px;
+	width: 100%;
+	background-color: #00BFFF;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+}
+.box-white{
+	float: left;
+	margin: 10px;
+	text-align: center;
+	height: 200px;
+	width: 150px;
+	background-color: #fff;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
 }
 .box-yellow{
 	float: left;
-	margin: 10px;
+	margin: 30px;
 	text-align: center;
 	background-color: yellow;
 	-webkit-border-radius: 30px;
@@ -84,12 +183,12 @@
 	-ms-transform:rotate(45deg); /* IE 9 */
 	-webkit-transform:rotate(45deg); /* Safari and Chrome */
 }
-.box-line-black *{
-	transform:rotate(-45deg);
-	-ms-transform:rotate(-45deg); /* IE 9 */
-	-webkit-transform:rotate(-45deg); /* Safari and Chrome */
+.box-yellow:hover{
+	-webkit-animation: pendura 2s alternate ease infinite;
+	-moz-animation: pendura 2s alternate ease infinite;
+	-o-animation: pendura 2s alternate ease infinite;
 }
-.box-white{
+.box-circle-white{
 	float: left;
 	margin: 10px;
 	text-align: center;

@@ -86,14 +86,14 @@
     .timeline { 
       font-size: 1.0em; 
       height: 10em;
+      width: 80%;
     }
     .timeline li { 
       position: relative;
       float: left;
       width: 1.5em; 
       margin: 0 0.1em;
-      height: 8em;
-      
+      height: 8em;      
       margin-bottom: 20px;
     }
     .timeline li a {
@@ -104,7 +104,7 @@
     .timeline li .label { 
       display: block; 
       position: absolute; 
-      bottom: -2em; 
+      bottom: -2.1em; 
       left: 0; 
       background: #000; 
       width: 100%; 
