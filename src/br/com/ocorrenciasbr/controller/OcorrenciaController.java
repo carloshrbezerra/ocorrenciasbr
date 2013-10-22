@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ocorrenciasbr.dao.OcorrenciasDAO;
-import br.com.ocorrenciasbr.vo.OcorrenciaTotalAlcoolizadaVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
 
 
@@ -29,6 +28,7 @@ public class OcorrenciaController extends HttpServlet{
 		request.setAttribute("listOcorrenciaTotalEstado", listOcorrenciaTotalEstado);
 			
 		request.setAttribute("page", "template/body.jsp");
+		request.setAttribute("logo", true);
 		
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);

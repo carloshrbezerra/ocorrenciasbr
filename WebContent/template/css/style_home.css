@@ -47,9 +47,12 @@ span h3{
 }
 
 
-.container-box{
+.container-box a{
 	margin: 0 auto;
 	position: relative;
 	top: 20px;
+	color: white;
 	
 }
+
+

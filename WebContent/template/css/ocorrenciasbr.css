@@ -6,6 +6,8 @@
 body{
 	 padding-top: 135px; 
 }
+
+
 @media screen and (max-width: 400px) {
 	body{
 	 padding-top: 110px;
@@ -206,6 +208,14 @@ body{
 	height: 50px;
 	background: url("../images/cinto_seguranca.png") no-repeat center;
 }
+.icon-habilitacao{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/habilitacao.png") no-repeat center;
+}
+
 .icon-capacete{
 	display: block;
 	margin-left: auto;
@@ -213,6 +223,7 @@ body{
 	height: 50px;
 	background: url("../images/capacete.png") no-repeat center;
 }
+
 .icon-carro{
 	display: block;
 	margin-left: auto;
@@ -252,7 +263,7 @@ body{
 
 #logo img{
 	width: 100%;
-	height: 580px;	
+	height: 440px;	
 	position:relative;
 	top: -25px;
 

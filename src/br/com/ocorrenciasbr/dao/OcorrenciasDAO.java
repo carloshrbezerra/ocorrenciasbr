@@ -10,11 +10,9 @@ import com.mysql.jdbc.Statement;
 
 import br.com.ocorrenciasbr.util.ConnectionFactory;
 import br.com.ocorrenciasbr.util.ConnectionUtil;
-import br.com.ocorrenciasbr.vo.OcorrenciaTotalAlcoolizadaVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
-import br.com.ocorrenciasbr.vo.OcorrenciaTotalSemCapaceteVO;
-import br.com.ocorrenciasbr.vo.OcorrenciaTotalSemCintoVO;
-import br.com.ocorrenciasbr.vo.OcorrenciaTotalTipoVeiculoVO;
+
+import br.com.ocorrenciasbr.vo.OcorrenciaTotalVO;
 
 public class OcorrenciasDAO {
 	
@@ -79,18 +77,20 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalAlcoolizadaVO> getTotalOcorrenciaPessoasAlcoolizadas(){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasAlcoolizadas(String estado){
         
-    	String query = "select  p.pescapacete,m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
-    					+ " inner join ocorrenciapessoa op on o.ocoid = op.opeocoid "
-    					+ " inner join pessoa p on p.pesid = op.opepesid "
-    					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-    		 	        + " where p.pesalcool = 'S' "
-    		 	        + " group by m.tmuuf"; 
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.pesalcool = 'S' "
+	 	        + " group by m.tmuuf, mes"; 
         
         ResultSet rs = null;
-        List<OcorrenciaTotalAlcoolizadaVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalAlcoolizadaVO>();
-        OcorrenciaTotalAlcoolizadaVO ocorrenciaTotalAlcoolizadaVO;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
         
         try {
            
@@ -98,10 +98,11 @@ public class OcorrenciasDAO {
             rs = statement.executeQuery(query);
             while (rs.next()) {
             	
-            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalAlcoolizadaVO();
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
             	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
             	
             }
@@ -110,7 +111,7 @@ public class OcorrenciasDAO {
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
-        	ConnectionUtil.close(connection);
+        	//ConnectionUtil.close(connection);
         }
         return totalOcorrenciaAlcoolVO;
     }
@@ -125,18 +126,20 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalSemCintoVO> getTotalOcorrenciaPessoasSemCinto(){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCinto(String estado){
         
-    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
-    					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
-    					+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
-    					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-    		 	        + " where p.pescinto = 'N' "
-    		 	        + " group by m.tmuuf"; 
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.pescinto = 'N' "
+	 	        + " group by m.tmuuf, mes"; 
         
         ResultSet rs = null;
-        List<OcorrenciaTotalSemCintoVO> totalOcorrenciaSemCintoVO = new ArrayList<OcorrenciaTotalSemCintoVO>();
-        OcorrenciaTotalSemCintoVO ocorrenciaSemCintoVO;
+        List<OcorrenciaTotalVO> totalOcorrenciaSemCintoVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaSemCintoVO;
         
         try {
            
@@ -144,10 +147,11 @@ public class OcorrenciasDAO {
             rs = statement.executeQuery(query);
             while (rs.next()) {
             	
-            	ocorrenciaSemCintoVO = new OcorrenciaTotalSemCintoVO();
+            	ocorrenciaSemCintoVO = new OcorrenciaTotalVO();
             	
             	ocorrenciaSemCintoVO.setEstado(rs.getString("tmuuf"));
             	ocorrenciaSemCintoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaSemCintoVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaSemCintoVO.add(ocorrenciaSemCintoVO);
             	
             }
@@ -156,7 +160,7 @@ public class OcorrenciasDAO {
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
-        	ConnectionUtil.close(connection);
+        	//ConnectionUtil.close(connection);
         }
         return totalOcorrenciaSemCintoVO;
     }
@@ -171,18 +175,20 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalSemCapaceteVO> getTotalOcorrenciaPessoasSemCapacete(){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCapacete(String estado){
         
-    	String query = "select  p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    					+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
     					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
     					+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
     					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-    		 	        + " where p.pescinto = 'N' "
-    		 	        + " group by m.tmuuf"; 
+    					+ " where  m.tmuuf = '" + estado + "' "
+    		 	        + " and p.pescapacete = 'N' "
+    		 	        + " group by m.tmuuf, mes"; 
         
         ResultSet rs = null;
-        List<OcorrenciaTotalSemCapaceteVO> totalOcorrenciaSemCapaceteVO = new ArrayList<OcorrenciaTotalSemCapaceteVO>();
-        OcorrenciaTotalSemCapaceteVO ocorrenciaSemCapaceteVO;
+        List<OcorrenciaTotalVO> totalOcorrenciaSemCapaceteVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaSemCapaceteVO;
         
         try {
            
@@ -190,10 +196,11 @@ public class OcorrenciasDAO {
             rs = statement.executeQuery(query);
             while (rs.next()) {
             	
-            	ocorrenciaSemCapaceteVO = new OcorrenciaTotalSemCapaceteVO();
+            	ocorrenciaSemCapaceteVO = new OcorrenciaTotalVO();
             	
             	ocorrenciaSemCapaceteVO.setEstado(rs.getString("tmuuf"));
             	ocorrenciaSemCapaceteVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaSemCapaceteVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaSemCapaceteVO.add(ocorrenciaSemCapaceteVO);
             	
             }
@@ -202,7 +209,7 @@ public class OcorrenciasDAO {
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
-        	ConnectionUtil.close(connection);
+        	//ConnectionUtil.close(connection);
         }
         return totalOcorrenciaSemCapaceteVO;
     }
@@ -211,25 +218,29 @@ public class OcorrenciasDAO {
     
     /**
      * 
-     * Retorna o Total de ocorrencias por tipo de veciulo
+     * Retorna o Total de ocorrencias por tipo de veciulo/Carro
      * 
      * @return List<OcorrenciaTotalTipoVeiculoVO>
      * @throws SQLException
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalTipoVeiculoVO> getTotalOcorrenciaTipoVeiculo(){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoCarro(String estado){
         
-    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia from ocorrencia o  "
+    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia, "
+    					+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes "
+    					+ " from ocorrencia o  "
     					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
     					+ " inner join veiculo v on v.veiid = ov.ocvveiid "
     					+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
-    		 	        + " where veitvvcodigo in (1,7,14,4,3) "
-    		 	        + " group by v.veitvvcodigo"; 
+    					+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
+    					+ " where  m.tmuuf = '" + estado + "' "
+    		 	        + " and veitvvcodigo = 14 "
+    		 	        + " group by m.tmuuf,v.veitvvcodigo,mes "; 
         
         ResultSet rs = null;
-        List<OcorrenciaTotalTipoVeiculoVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalTipoVeiculoVO>();
-        OcorrenciaTotalTipoVeiculoVO ocorrenciatipoVeiculoVO;
+        List<OcorrenciaTotalVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciatipoVeiculoVO;
         
         try {
            
@@ -237,11 +248,11 @@ public class OcorrenciasDAO {
             rs = statement.executeQuery(query);
             while (rs.next()) {
             	
-            	ocorrenciatipoVeiculoVO = new OcorrenciaTotalTipoVeiculoVO();
+            	ocorrenciatipoVeiculoVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciatipoVeiculoVO.setCodigo(rs.getInt("veitvvcodigo"));
-            	ocorrenciatipoVeiculoVO.setDescricao(rs.getString("tvvdescricao"));
             	ocorrenciatipoVeiculoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciatipoVeiculoVO.setMes(rs.getInt("mes"));
+            
             	totalOcorrenciatipoVeiculoVO.add(ocorrenciatipoVeiculoVO);
             	
             }
@@ -252,10 +263,318 @@ public class OcorrenciasDAO {
         finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
-        	ConnectionUtil.close(connection);
+        	//ConnectionUtil.close(connection);
         }
         return totalOcorrenciatipoVeiculoVO;
     }
     
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de ocorrencias por tipo de veciulo/Moto
+     * 
+     * @return List<OcorrenciaTotalTipoVeiculoVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoMoto(String estado){
+        
+    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia, "
+    					+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes "
+    					+ " from ocorrencia o  "
+    					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
+    					+ " inner join veiculo v on v.veiid = ov.ocvveiid "
+    					+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
+    					+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
+    					+ " where  m.tmuuf = '" + estado + "' "
+    		 	        + " and veitvvcodigo = 4 "
+    		 	        + " group by m.tmuuf,v.veitvvcodigo,mes "; 
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciatipoVeiculoVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciatipoVeiculoVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciatipoVeiculoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciatipoVeiculoVO.setMes(rs.getInt("mes"));
+            
+            	totalOcorrenciatipoVeiculoVO.add(ocorrenciatipoVeiculoVO);
+            	
+            }
+        }catch (SQLException e){
+        	e.printStackTrace();
+        } 
+        
+        finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciatipoVeiculoVO;
+    }
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de Ocorrencias com pessoas do sexo masculino
+     * 
+     * @return List<OcorrenciaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoMasculino(String estado){
+        
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.pessexo = 'M' "
+	 	        + " group by m.tmuuf, mes"; 
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
+            	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
+            	
+            }
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaAlcoolVO;
+    }
+    
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de Ocorrencias com pessoas do sexo masculino
+     * 
+     * @return List<OcorrenciaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoFeminino(String estado){
+        
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.pessexo = 'F' "
+	 	        + " group by m.tmuuf, mes"; 
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
+            	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
+            	
+            }
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaAlcoolVO;
+    }
+    
+    /**
+     * 
+     * Retorna o Total de Ocorrencias com pessoas alcoolizadas por estado
+     * 
+     * @return List<OcorrenciaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemHabilitacao(String estado){
+        
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.peshabilitado = 'N' "
+	 	        + " group by m.tmuuf, mes"; 
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
+            	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
+            	
+            }
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaAlcoolVO;
+    }
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de Acidentes
+     * 
+     * @return List<OcorrenciaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidente(String estado){
+        
+    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+				+ " m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+				+ " inner join ocorrenciaacidente oa on oa.oacocoid = o.ocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " group by m.tmuuf, mes"; 
+    	
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
+            	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
+            	
+            }
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaAlcoolVO;
+    }
+    
+    
+    
+    /**
+     * 
+     * Retorna o Total de Acidentes
+     * 
+     * @return List<OcorrenciaTotalAlcoolizadaVO>
+     * @throws SQLException
+     * 
+     * @author Carlos Bezerra
+     */
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidenteAtropelamento(String estado){
+        
+    	 
+        String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+    			+ " inner join ocorrenciaacidente oa on oa.oacocoid = o.ocoid "
+    			+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+    			+ " inner join tipoacidente ta on ta.ttacodigo = oa.oacttacodigo "
+    			+ " where  m.tmuuf = '" + estado + "' "
+     	        + " and ta.ttacodigo = 2 "
+     	        + " group by m.tmuuf, mes"; 
+    	
+        ResultSet rs = null;
+        List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
+        OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
+            	
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
+            	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
+            	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
+            	
+            }
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	//ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaAlcoolVO;
+    }
+    
+    
+    
+   
+	
+   
     
 }
