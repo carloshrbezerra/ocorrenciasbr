@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="template/css/styles_charts.css">
 	<link rel="stylesheet" type="text/css" href="template/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="template/css/component.css" />
+	<link rel="stylesheet" type="text/css" href="template/css/style_home.css" />
 	<script src="js/modernizr.custom.js"></script>
 
 	<script>window.jQuery || document.write('<script src="template/js/vendor/jquery-1.10.1.js"><\/script>')</script>

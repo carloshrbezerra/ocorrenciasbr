@@ -44,7 +44,8 @@ body{
 	}
 }
 .logo img{
-	top: 20px;
+	position: relative;
+	top: 25px;
 }
 .background{
 	height: auto;
@@ -246,4 +247,13 @@ body{
 	margin-right: auto;
 	height: 100px;
 	background: url("../images/mulher.png") no-repeat center;
+}
+
+
+#logo img{
+	width: 100%;
+	height: 580px;	
+	position:relative;
+	top: -25px;
+
 }

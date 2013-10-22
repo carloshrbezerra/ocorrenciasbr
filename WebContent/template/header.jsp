@@ -2,8 +2,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="logo">
-			<a href="ocorrencias.do"> <img class="img-responsive"
-				src="template/images/logo2.png">
+			<a href="ocorrencias.do"> <img class="img-responsive" src="template/images/logo2.png">
 			</a>
 		</div>
 		<div class="navbar-header">
@@ -45,4 +44,12 @@
 		</div>
 		<!-- /.navbar-collapse -->
 	</nav>
+	
+	
+	<div id="logo">
+		<img src="template/images/background.jpg" class="img-responsive"/>
+	</div>
+	
+
+	
 </header>

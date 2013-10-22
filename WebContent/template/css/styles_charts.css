@@ -1,88 +1,88 @@
 @CHARSET "ISO-8859-1";
 
 /* SETUP */
-    * { 
-      margin: 0; 
-      padding: 0; 
-      list-style-type: none;
-    }
-    a:hover { 
-      color: #333; 
-    }
-    .section { 
-      padding: 1em 2em;
-      margin: 0px auto;
-      height: auto;
-      width: auto;
-      text-align: center;      
-    }
-    
-    /* TIMELINE CHARTS */
-    .timeline { 
-      font-size: 1.0em; 
-      height: auto;
-      min-height: 50px;
-    }
-    .timeline li { 
-      position: relative;
-      float: left;
-      height: 40px;
-      width: 100%; 
-      margin-bottom: 2px;
-      background-color: #F4C430;
-      -webkit-transition: all 0.5s linear;
-	  -moz-transition: all 0.5s linear;
-	  -o-transition: all 0.5s linear;
-	  transition: all 0.5s linear; 
-    }
-    .timeline li .name {
-    	float: left; 
-    	display: block;
-    	position: absolute; 
-    	height: 99%;
-    	width:10%;
-	    background-color: #fff;
-    }
-    .timeline li a {
-      float: right;
-      display: block;
-      position: relative;
-      height: 40px;
-      width: 90%;
-      color: #fff;
-    }
-    .timeline li a .count { 
+ * { 
+   margin: 0; 
+   padding: 0; 
+   list-style-type: none;
+ }
+  a:hover { 
+    color: #333; 
+  }
+  .section { 
+    padding: 1em 2em;
+    margin: 0px auto;
+    height: auto;
+    width: auto;
+    text-align: center;      
+  }
+  
+  /* TIMELINE CHARTS */
+  .timeline { 
+    font-size: 1.0em; 
+    height: auto;
+    min-height: 50px;
+  }
+  .timeline li { 
+    position: relative;
+    float: left;
+    height: 40px;
+    width: 100%; 
+    margin-bottom: 2px;
+    background-color: #F4C430;
+    -webkit-transition: all 0.5s linear;
+ -moz-transition: all 0.5s linear;
+ -o-transition: all 0.5s linear;
+ transition: all 0.5s linear; 
+  }
+  .timeline li .name {
+  	float: left; 
+  	display: block;
+  	position: absolute; 
+  	height: 99%;
+  	width:10%;
+   background-color: #fff;
+  }
+  .timeline li a {
+    float: right;
+    display: block;
+    position: relative;
+    height: 40px;
+    width: 90%;
+    color: #fff;
+  }
+  .timeline li a .count { 
 /*      display: block;
       position: absolute;*//* verificar */
-      float: left;
-      text-align: left;
-      text-indent: 10px;
-      height: 40px; 
-      background: #272b30;
+    float: left;
+    text-align: left;
+    text-indent: 10px;
+    height: 40px; 
+    background: #272b30;
 /*      overflow: hidden;*/ 
-    }
-    .timeline li .value {
-    	float: right;
-    	right: 1%;
-    	display: inline;
-    	position: absolute;
-    	width: 60px;
-    	padding: 2px;
-    	margin-top: 2px;
-    	color: #fff;
-		border:2px solid #fff;
-		-webkit-border-radius: 10px;
-		-moz-border-radius: 10px;
-		border-radius: 10px;
-    }
-    .timeline li:hover { 
-      background: orange; 
-    }
+  }
+  .timeline li .value {
+  	float: right;
+  	right: 1%;
+  	display: inline;
+  	position: absolute;
+  	width: 60px;
+  	padding: 2px;
+  	margin-top: 2px;
+  	color: #fff;
+	border:2px solid #fff;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+  }
+  .timeline li:hover { 
+    background: orange; 
+  }
 
-    .timeline li a:hover .count { 
-      background: #323232;
-      -webkit-transition: all 0.5s linear;
-	  -moz-transition: all 0.5s linear;
-	  -o-transition: all 0.5s linear;
-	  transition: all 0.5s linear; 
-    }
+  .timeline li a:hover .count { 
+    background: #323232;
+    -webkit-transition: all 0.5s linear;
+ -moz-transition: all 0.5s linear;
+ -o-transition: all 0.5s linear;
+ transition: all 0.5s linear; 
+  }
