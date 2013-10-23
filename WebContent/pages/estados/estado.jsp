@@ -5,10 +5,6 @@
 			
 			<div id="chart-header">
 			
-				
-				 
-			
-			
 			</div>
 			
 			
@@ -20,12 +16,12 @@
 					<!--  TOTAL OCORRENCIAS COM ACIDENTES -->
 					<li class="icon-clima-1 rb-span-2">
 						<h3>Acidentes</h3>
-						<span class="icon-x"></span>
+						<span class="icon-acidente"></span>
 						<span class="rb-temp">${listOcorrenciaAcidente.size()}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Acidentes</span><span class="icon-x"></span><span>${listOcorrenciaAcidente.size()}</span></div>
+								<div><span class="rb-city">Acidentes</span><span class="icon-acidente"></span><span>${listOcorrenciaAcidente.size()}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaAcidente}">
 						
@@ -45,12 +41,12 @@
  					
  					<li class="icon-clima-1 rb-span-2">
 						<h3>Atropelamentos</h3>
-						<span class="icon-x"></span>
+						<span class="icon-atropelamento"></span>
 						<span class="rb-temp">${listOcorrenciaAcidenteAtropelamento.size()}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Atropelamentos</span><span class="icon-x"></span><span>${listOcorrenciaAcidenteAtropelamento.size()}</span></div>
+								<div><span class="rb-city">Atropelamentos</span><span class="icon-atropelamento"></span><span>${listOcorrenciaAcidenteAtropelamento.size()}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaAcidenteAtropelamento}">
 						
@@ -276,17 +272,3 @@
 				
 			</div>
 		</div><!-- /container -->
-		
-		
-		
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-		<script src="js/jquery.fittext.js"></script>
-		<script src="js/boxgrid.js"></script>
-		<script>
-			$(function() {
-
-				Boxgrid.init();
-				
-
-			});
-		</script>

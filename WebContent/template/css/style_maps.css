@@ -1,0 +1,24 @@
+@CHARSET "ISO-8859-1";
+  
+#latlng {
+    width: 225px;
+}
+  
+#map-canvas{
+  	width: 50%;
+  	float:right;
+  	height: 100%;
+}
+  
+  
+.map-info{
+  	padding: 0 0 0 0;
+  	width: 50%;
+  	height: 100%;
+  	float:left;	
+}
+
+.container-maps{
+	position:relative;
+	top: 90px;
+}

@@ -259,6 +259,21 @@ body{
 	height: 100px;
 	background: url("../images/mulher.png") no-repeat center;
 }
+.icon-acidente{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/acidente.png") no-repeat center;
+}
+
+.icon-atropelamento{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	height: 50px;
+	background: url("../images/atropelamento.png") no-repeat center;
+}
 
 
 #logo img{

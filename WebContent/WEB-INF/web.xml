@@ -9,8 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  
-  
   <servlet>
     <servlet-name>ocorrencia</servlet-name>
     <servlet-class>br.com.ocorrenciasbr.controller.OcorrenciaController</servlet-class>
@@ -19,8 +17,6 @@
     <servlet-name>ocorrencia</servlet-name>
     <url-pattern>/ocorrencias.do</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <servlet-name>estado</servlet-name>
     <servlet-class>br.com.ocorrenciasbr.controller.EstadoController</servlet-class>
@@ -28,6 +24,15 @@
   <servlet-mapping>
     <servlet-name>estado</servlet-name>
     <url-pattern>/estado.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>maps</servlet-name>
+    <servlet-class>br.com.ocorrenciasbr.controller.MapsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>maps</servlet-name>
+    <url-pattern>/maps.do</url-pattern>
   </servlet-mapping>
   
   

@@ -17,6 +17,15 @@
 	margin: 10px 10px;
 }
 
+
+
+.box1{
+	background: #f1c30e;
+	border:1px solid #f1c30e;
+	float: left;
+	margin: 10px 10px;
+}
+
 .box2{
 	
 	background: #3598dc;
@@ -55,4 +64,18 @@ span h3{
 	
 }
 
+.title-box{
+	
+}
 
+
+.img-box{
+	height: 160px;
+}
+
+
+.title-chart-principal{
+	float:left;
+	
+	
+}

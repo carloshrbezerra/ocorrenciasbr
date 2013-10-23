@@ -19,7 +19,7 @@
 			
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#graficos">Estatísticas</a></li>
-				<li><a href="#">Minha Localização</a></li>
+				<li><a href="javascript:getLocation()">Minha Localização</a></li>
 				<li><a href="#">Curiosidades</a></li>
 				<li class="dropdown"><a href="#" class="dropdown-toggle"
 					data-toggle="dropdown">Ocorrências<b class="caret"></b></a>
