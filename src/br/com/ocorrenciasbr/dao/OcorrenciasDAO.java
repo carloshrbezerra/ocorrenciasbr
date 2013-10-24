@@ -33,12 +33,13 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalEstadoVO> getTotalOcorrenciaEstado(){
+    public List<OcorrenciaTotalEstadoVO> getTotalOcorrenciaEstado(String ano){
         
-    	String query = "select m.tmuuf,tmudenominacao, count(o.ocoid) as total_ocorrencia "
+    	String query = "select uf,total_ocorrencia,ano from (select m.tmuuf as uf, count(o.ocoid) as total_ocorrencia, "
+    					+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano "
     		 	        + " from ocorrencia o inner join municipio m on m.tmucodigo = o.ocomunicipio "
     		 	        + " group by m.tmuuf "
-    		 	        + " order by m.tmuuf"; 
+    		 	        + " order by m.tmuuf) as t where t.ano = '" + ano + "'"; 
       
         ResultSet rs = null;
         List<OcorrenciaTotalEstadoVO> totalEstadoVO = new ArrayList<OcorrenciaTotalEstadoVO>();
@@ -52,7 +53,7 @@ public class OcorrenciasDAO {
             	
             	OcorrenciaTotalEstadoVO = new OcorrenciaTotalEstadoVO();
             	
-            	OcorrenciaTotalEstadoVO.setEstado(rs.getString("tmuuf"));
+            	OcorrenciaTotalEstadoVO.setEstado(rs.getString("uf"));
             	OcorrenciaTotalEstadoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	totalEstadoVO.add(OcorrenciaTotalEstadoVO);
             	
@@ -77,16 +78,18 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasAlcoolizadas(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasAlcoolizadas(String estado, String ano){
         
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
 				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
 				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
 	 	        + " where  m.tmuuf = '" + estado + "' "
 	 	        + " and p.pesalcool = 'S' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
@@ -100,7 +103,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
@@ -126,16 +129,18 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCinto(String estado){
-        
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCinto(String estado, String ano){
+        	
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
 				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
 				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " where  m.tmuuf = '" + estado + "' "
 	 	        + " and p.pescinto = 'N' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaSemCintoVO = new ArrayList<OcorrenciaTotalVO>();
@@ -149,7 +154,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaSemCintoVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaSemCintoVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaSemCintoVO.setEstado(rs.getString("uf"));
             	ocorrenciaSemCintoVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaSemCintoVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaSemCintoVO.add(ocorrenciaSemCintoVO);
@@ -175,16 +180,19 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCapacete(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemCapacete(String estado, String ano){
         
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-    					+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
-    					+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
-    					+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
-    					+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-    					+ " where  m.tmuuf = '" + estado + "' "
-    		 	        + " and p.pescapacete = 'N' "
-    		 	        + " group by m.tmuuf, mes"; 
+    	
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
+				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
+				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and p.pescapacete = 'N' "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaSemCapaceteVO = new ArrayList<OcorrenciaTotalVO>();
@@ -198,7 +206,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaSemCapaceteVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaSemCapaceteVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaSemCapaceteVO.setEstado(rs.getString("uf"));
             	ocorrenciaSemCapaceteVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaSemCapaceteVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaSemCapaceteVO.add(ocorrenciaSemCapaceteVO);
@@ -225,18 +233,20 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoCarro(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoCarro(String estado, String ano){
         
-    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia, "
-    					+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes "
-    					+ " from ocorrencia o  "
-    					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
-    					+ " inner join veiculo v on v.veiid = ov.ocvveiid "
-    					+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
-    					+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
-    					+ " where  m.tmuuf = '" + estado + "' "
-    		 	        + " and veitvvcodigo = 14 "
-    		 	        + " group by m.tmuuf,v.veitvvcodigo,mes "; 
+    	
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+				+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
+				+ " inner join veiculo v on v.veiid = ov.ocvveiid "
+				+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
+				+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and veitvvcodigo = 14 "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'";    
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalVO>();
@@ -280,18 +290,21 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoMoto(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaTipoVeiculoMoto(String estado, String ano){
         
-    	String query = "select v.veitvvcodigo,tp.tvvdescricao,count(o.ocoid) as total_ocorrencia, "
-    					+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes "
-    					+ " from ocorrencia o  "
-    					+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
-    					+ " inner join veiculo v on v.veiid = ov.ocvveiid "
-    					+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
-    					+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
-    					+ " where  m.tmuuf = '" + estado + "' "
-    		 	        + " and veitvvcodigo = 4 "
-    		 	        + " group by m.tmuuf,v.veitvvcodigo,mes "; 
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+				+ " inner join ocorrenciaveiculo ov on o.ocoid = ov.ocvocoid "
+				+ " inner join veiculo v on v.veiid = ov.ocvveiid "
+				+ " inner join tipoveiculo tp on tp.tvvcodigo = v.veitvvcodigo "
+				+ " inner join municipio m on m.tmucodigo = o.ocomunicipio "
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and veitvvcodigo = 4 "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
+    	
+    	
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciatipoVeiculoVO = new ArrayList<OcorrenciaTotalVO>();
@@ -334,16 +347,20 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoMasculino(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoMasculino(String estado, String ano){
         
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+   	
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
 				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
 				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-				+ " where  m.tmuuf = '" + estado + "' "
+	 	        + " where  m.tmuuf = '" + estado + "' "
 	 	        + " and p.pessexo = 'M' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
+    	
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
@@ -357,7 +374,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
@@ -385,16 +402,19 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoFeminino(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSexoFeminino(String estado, String ano){
         
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+   	
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
 				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
 				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-				+ " where  m.tmuuf = '" + estado + "' "
-	 	        + " and p.pessexo = 'F' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and  p.pessexo = 'F' "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
@@ -408,7 +428,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
@@ -433,16 +453,19 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemHabilitacao(String estado){
-        
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " p.pesalcool,m.tmuuf,count(p.pesid) as total_ocorrencia from pessoa p "
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaPessoasSemHabilitacao(String estado, String ano){
+      
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from pessoa p "
 				+ " inner join ocorrenciapessoa op on p.pesid = op.opepesid "
 				+ " inner join ocorrencia o on o.ocoid = op.opeocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-				+ " where  m.tmuuf = '" + estado + "' "
-	 	        + " and p.peshabilitado = 'N' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and  p.peshabilitado = 'N' "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
+    	
         
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
@@ -456,7 +479,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
@@ -483,14 +506,18 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidente(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidente(String estado, String ano){
         
-    	String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-				+ " m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+  
+    	String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
 				+ " inner join ocorrenciaacidente oa on oa.oacocoid = o.ocoid "
 				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-				+ " where  m.tmuuf = '" + estado + "' "
-	 	        + " group by m.tmuuf, mes"; 
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
+    	
     	
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
@@ -504,7 +531,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);
@@ -531,18 +558,23 @@ public class OcorrenciasDAO {
      * 
      * @author Carlos Bezerra
      */
-    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidenteAtropelamento(String estado){
+    public List<OcorrenciaTotalVO> getTotalOcorrenciaComAcidenteAtropelamento(String estado, String ano){
         
     	 
-        String query = "select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
-    			+ " m.tmuuf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
-    			+ " inner join ocorrenciaacidente oa on oa.oacocoid = o.ocoid "
-    			+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
-    			+ " inner join tipoacidente ta on ta.ttacodigo = oa.oacttacodigo "
-    			+ " where  m.tmuuf = '" + estado + "' "
-     	        + " and ta.ttacodigo = 2 "
-     	        + " group by m.tmuuf, mes"; 
+        String query = "select mes,uf,total_ocorrencia,ano from ( "
+    			+ " select case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%m') else SUBSTRING(o.ocodatafim,4,2) end as mes, "
+    			+ " case length(o.ocodatafim) when 19 then DATE_FORMAT(o.ocodatafim, '%Y') else SUBSTRING(o.ocodatafim,7,5) end as ano, "
+				+ " m.tmuuf as uf,count(o.ocoid) as total_ocorrencia from ocorrencia o "
+				+ " inner join ocorrenciaacidente oa on oa.oacocoid = o.ocoid "
+				+ " inner join municipio m on o.ocomunicipio = m.tmucodigo "
+				+ " inner join tipoacidente ta on ta.ttacodigo = oa.oacttacodigo "
+	 	        + " where  m.tmuuf = '" + estado + "' "
+	 	        + " and ta.ttacodigo = 2 "
+	 	        + " group by m.tmuuf, mes ) as t where t.ano = '" + ano + "'"; 
+   
     	
+        
+        
         ResultSet rs = null;
         List<OcorrenciaTotalVO> totalOcorrenciaAlcoolVO = new ArrayList<OcorrenciaTotalVO>();
         OcorrenciaTotalVO ocorrenciaTotalAlcoolizadaVO;
@@ -555,7 +587,7 @@ public class OcorrenciasDAO {
             	
             	ocorrenciaTotalAlcoolizadaVO = new OcorrenciaTotalVO();
             	
-            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("tmuuf"));
+            	ocorrenciaTotalAlcoolizadaVO.setEstado(rs.getString("uf"));
             	ocorrenciaTotalAlcoolizadaVO.setTotalOcorrencia(rs.getInt("total_ocorrencia"));
             	ocorrenciaTotalAlcoolizadaVO.setMes(rs.getInt("mes"));
             	totalOcorrenciaAlcoolVO.add(ocorrenciaTotalAlcoolizadaVO);

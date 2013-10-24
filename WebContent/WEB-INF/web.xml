@@ -34,6 +34,5 @@
     <servlet-name>maps</servlet-name>
     <url-pattern>/maps.do</url-pattern>
   </servlet-mapping>
-  
-  
+ 
 </web-app>

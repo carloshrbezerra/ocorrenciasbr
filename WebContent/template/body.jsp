@@ -8,7 +8,7 @@
 						
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 						<div class="box-gold box1 box-geral">
-							<a href="#graficos" onclick="scrollBar()">
+							<a href="ocorrencias.do?ano=2007" onclick="scrollBar()">
 								<div class="img-box">
 								<img class="img-responsive imgpos" height="120px" width="120px" src="template/images/chart.png">
 								</div>
@@ -58,34 +58,5 @@
 </div>
 <!--:END:  CONTAINER BOX PRINCIPAIS -->
 
-
-
-<!--  CONTAINER DOS GRAFICOS OCORRENCIAS / ESTADO -->
-		<div id="graficos" class="panel">
-			
-	
-				<div class="section">
-	
-					<h3 class="title-chart-principal">Total de Ocorrências por estados</h3>
-					<br />
-					<br />
-					
-					
-					<ul class="timeline">
-						<c:forEach var="o" items="${listOcorrenciaTotalEstado}">
-							<li>
-								<span class="name"><c:out value="${o.estado}" /></span>
-								<a data-toggle="modal" href="estado.do?tipo=estado&estado=${o.estado}"
-								title="${o.totalOcorrencia}">
-								<span class="count" style="width: ${((o.totalOcorrencia / 150)  >= 100) ? 100 : o.totalOcorrencia / 150}%"></span>
-								</a>
-								<span class="value"><c:out value="${o.totalOcorrencia}"/></span>
-							</li>
-						</c:forEach>
-					</ul>
-				</div>
-			
-		</div>
-<!--:END:  CONTAINER DOS GRAFICOS OCORRENCIAS / ESTADO -->
 
 

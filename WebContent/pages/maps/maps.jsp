@@ -63,11 +63,11 @@
 					<li class="icon-habilitacao">
 						<h3>Sem Habilitação</h3>
 						<span class="icon-habilitacao"></span>
-						<span class="rb-temp">${listOcorrenciaCarroPessoaSemHabilitacao.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaCarroPessoaSemHabilitacao}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Sem Habilitação</span><span class="icon-habilitacao"></span><span>${listOcorrenciaCarroPessoaSemHabilitacao.size()}</span></div>
+								<div><span class="rb-city">Sem Habilitação</span><span class="icon-habilitacao"></span><span>${totalOcorrenciaCarroPessoaSemHabilitacao}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaCarroPessoaSemHabilitacao}">
 						
@@ -89,12 +89,12 @@
 					<li class="icon-clima-1">
 						<h3>Sem Capacete</h3>
 						<span class="icon-capacete"></span>
-						<span class="rb-temp">${listOcorrenciaSemCapacete.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaSemCapacete}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
 									
-								<div><span class="rb-city">Sem Capacete</span><span class="icon-capacete"></span><span>${listOcorrenciaSemCapacete.size()}</span></div>
+								<div><span class="rb-city">Sem Capacete</span><span class="icon-capacete"></span><span>${totalOcorrenciaSemCapacete}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaSemCapacete}">
 						
@@ -116,12 +116,12 @@
 					<li class="icon-clima-1">
 						<h3>Sem Cinto</h3>
 						<span class="icon-cinto"></span>
-						<span class="rb-temp">${listOcorrenciaSemCinto.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaSemCinto}</span>
 						<div class="rb-overlay">
 							
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Sem Cinto</span><span class="icon-cinto"></span><span>${listOcorrenciaSemCinto.size()}</span></div>
+								<div><span class="rb-city">Sem Cinto</span><span class="icon-cinto"></span><span>${totalOcorrenciaSemCinto}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaSemCinto}">
 						
@@ -142,11 +142,11 @@
 					<li class="icon-clima-2">
 						<h3>Alcoolizados</h3>
 						<span class="icon-alcool"></span>
-						<span class="rb-temp">${listOcorrenciaAlcool.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaAlcool}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Alcoolizados</span><span class="icon-alcool"></span></span><span>${listOcorrenciaAlcool.size()}</span></div>
+								<div><span class="rb-city">Alcoolizados</span><span class="icon-alcool"></span></span><span>${totalOcorrenciaAlcool}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaAlcool}">
 						
@@ -167,11 +167,11 @@
 					<li class="icon-clima-11">
 						<h3>Carros</h3>
 						<span class="icon-carro"></span>
-						<span class="rb-temp">${listOcorrenciaCarro.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaCarro}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Carros</span><span class="icon-carro"></span><span>${listOcorrenciaCarro.size()}</span></div>
+								<div><span class="rb-city">Carros</span><span class="icon-carro"></span><span>${totalOcorrenciaCarro}</span></div>
 								
 								<c:forEach var="o" items="${listOcorrenciaCarro}">
 						
@@ -193,11 +193,11 @@
 					<li class="icon-clima-2 rb-span-2">
 						<h3>Moto</h3>
 						<span class="icon-moto"></span>
-						<span class="rb-temp">${listOcorrenciaMoto.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaMoto}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Moto</span><span class="icon-moto"></span><span>${listOcorrenciaMoto.size()}</span></div>
+								<div><span class="rb-city">Moto</span><span class="icon-moto"></span><span>${totalOcorrenciaMoto}</span></div>
 								<c:forEach var="o" items="${listOcorrenciaMoto}">
 						
 								<div>
@@ -218,11 +218,11 @@
 					<li class="icon-clima-2">
 						<h3>Homens</h3>
 						<span class="icon-homem"></span>
-						<span class="rb-temp">${listOcorrenciaSexoMasculino.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaSexoMasculino}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Homens</span><span class="icon-homem"></span><span>${listOcorrenciaSexoMasculino.size()}</span></div>
+								<div><span class="rb-city">Homens</span><span class="icon-homem"></span><span>${totalOcorrenciaSexoMasculino}</span></div>
 								<c:forEach var="o" items="${listOcorrenciaSexoMasculino}">
 						
 								<div>
@@ -245,11 +245,11 @@
 					<li class="icon-clima-4 rb-span-4">
 						<h3>Mulheres</h3>
 						<span class="icon-mulher"></span>
-						<span class="rb-temp">${listOcorrenciaSexoFeminio.size()}</span>
+						<span class="rb-temp">${totalOcorrenciaSexoFeminio}</span>
 						<div class="rb-overlay">
 							<span class="rb-close">close</span>
 							<div class="rb-week">
-								<div><span class="rb-city">Mulheres</span><span class="icon-mulher"></span><span>${listOcorrenciaSexoFeminio.size()}</span></div>
+								<div><span class="rb-city">Mulheres</span><span class="icon-mulher"></span><span>${totalOcorrenciaSexoFeminio}</span></div>
 								<c:forEach var="o" items="${listOcorrenciaSexoFeminio}">
 						
 								<div>
@@ -274,6 +274,6 @@
 		   
 		   
 		    <div id="map-canvas">
-		    	<!-- <img src="http://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=14&size=400x300&sensor=false" /> -->
+		    
 		    </div>
     

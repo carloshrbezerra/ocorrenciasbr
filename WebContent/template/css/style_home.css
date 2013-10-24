@@ -79,3 +79,26 @@ span h3{
 	
 	
 }
+
+.title-geral{
+	
+	color:white;
+	margin:0 auto;
+	width:50%;
+	text-align: center;
+	
+}
+
+.container-ocorrencias{
+	position: relative;
+	top: 70px;
+}
+
+.container-estatus{
+	position: relative;
+	top: 78px;
+}
+
+.container-ocorrencias hr{
+		
+}

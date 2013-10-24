@@ -26,6 +26,12 @@
 	<script>window.jQuery || document.write('<script src="template/js/vendor/jquery-1.10.1.js"><\/script>')</script>
 	<script src="template/js/vendor/bootstrap.min.js"></script>
 	<script src="template/js/ocorrencias.js"></script>
+	
+	<script type="text/javascript">
+
+			
+		
+	</script>
 
 </head>
 
@@ -35,8 +41,13 @@
 	
 		<div id="content" class="content background">
 		
-			<jsp:include page="${page}" />
-			
+		
+			<%if(request.getAttribute("page") == null){%>
+				<jsp:include page="/template/body.jsp" />			
+			<%}else{%>
+				<jsp:include page="${page}" />	
+			<%}%>
+
 			
 			<script src="js/jquery.fittext.js"></script>
 			<script src="js/boxgrid.js"></script>
@@ -55,7 +66,13 @@
 		<!--  CONTAINER FOOTER  -->
 		<jsp:include page="/template/footer.jsp" />
 		
-
+		
+		
+		<div id="mascara">
+		
+				<img src="template/images/ajax-loader_un.gif" class="window"/>
+  
+		</div>
 	
 </body>
 

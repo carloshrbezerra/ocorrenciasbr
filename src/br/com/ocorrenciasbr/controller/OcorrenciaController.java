@@ -20,31 +20,26 @@ public class OcorrenciaController extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
+		
+		String ano = request.getParameter("ano");
+		
+		if(ano == "" || ano == null){
+			ano = "2007";
+		}
+		
 		OcorrenciasDAO ocorrenciaDAO = new OcorrenciasDAO();
 		
 		//Numeto total de ocorrencias por estado
-		List<OcorrenciaTotalEstadoVO> listOcorrenciaTotalEstado  =   ocorrenciaDAO.getTotalOcorrenciaEstado();
+		List<OcorrenciaTotalEstadoVO> listOcorrenciaTotalEstado  =  ocorrenciaDAO.getTotalOcorrenciaEstado(ano);
 		
 		request.setAttribute("listOcorrenciaTotalEstado", listOcorrenciaTotalEstado);
 			
-		request.setAttribute("page", "template/body.jsp");
-		request.setAttribute("logo", true);
+		request.setAttribute("page", "pages/ocorrencias/ocorrencias.jsp");
+		request.setAttribute("title", "Total de ocorrências por estados - " + ano);
+		request.setAttribute("ano", ano);
 		
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
-		 
-			
+		 	
 	}
-	
-	
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-	
-		PrintWriter out = response.getWriter();
-		
-		out.println("ocorrencias br");
-		
-		
-	}
-	
-	
 }

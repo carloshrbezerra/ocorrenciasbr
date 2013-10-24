@@ -18,25 +18,12 @@ public class PageController extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String caminho = "";
-		
-		if(request.getParameter("tipo") == "graficos"){
-			request.setAttribute("page", "template/body.jsp#graficos");
-		}else{
-			request.setAttribute("page", "template/body.jsp");
-			caminho = "ocorrencias.do";
-		}
-		
-		
-	
-		RequestDispatcher view = request.getRequestDispatcher(caminho);
-		view.forward(request, response);
-		
-		
-	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setAttribute("page", "template/body.jsp#graficos");
+		
+		//RequestDispatcher view = request.getRequestDispatcher("index.jsp");
+		//view.forward(request, response);
+		
 		
 	}
 
