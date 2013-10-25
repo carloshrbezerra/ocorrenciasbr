@@ -11,7 +11,7 @@ import com.mysql.jdbc.Statement;
 import br.com.ocorrenciasbr.util.ConnectionFactory;
 import br.com.ocorrenciasbr.util.ConnectionUtil;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
-
+import br.com.ocorrenciasbr.vo.OcorrenciaTotalTipoVO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalVO;
 
 public class OcorrenciasDAO {
@@ -604,6 +604,45 @@ public class OcorrenciasDAO {
     }
     
     
+    
+    public List<OcorrenciaTotalTipoVO> getTotalOcorrenciaTipo(){
+        
+   	 
+        String query = "select ta.ttadescricao as descricao, count(oc.oacocoid) as total from"
+        		+ " ocorrencia o inner join municipio m on m.tmucodigo = o.ocomunicipio inner join "
+        		+ " ocorrenciaacidente oc on o.ocoid = oc.oacocoid inner join tipoacidente ta"
+        		+ " on oc.oacttacodigo = ta.ttacodigo"
+        		+ " group by descricao order by total desc"; 
+   
+    	
+        
+        
+        ResultSet rs = null;
+        List<OcorrenciaTotalTipoVO> totalOcorrenciaTipoVO = new ArrayList<OcorrenciaTotalTipoVO>();
+        OcorrenciaTotalTipoVO ocorrenciaTotalTipoVO;
+        
+        try {
+           
+            statement = (Statement) connection.createStatement();
+            rs = statement.executeQuery(query);
+            while (rs.next()) {
+            	
+            	ocorrenciaTotalTipoVO = new OcorrenciaTotalTipoVO();
+            	ocorrenciaTotalTipoVO.setDescricaoTipo(rs.getString("descricao"));
+            	ocorrenciaTotalTipoVO.setTotal(rs.getInt("total"));
+            	totalOcorrenciaTipoVO.add(ocorrenciaTotalTipoVO);
+            }
+            
+        } catch(SQLException e){
+        	e.printStackTrace();
+        } finally {
+        	ConnectionUtil.close(rs);
+        	ConnectionUtil.close(statement);
+        	ConnectionUtil.close(connection);
+        }
+        return totalOcorrenciaTipoVO;
+    }
+
     
    
 	

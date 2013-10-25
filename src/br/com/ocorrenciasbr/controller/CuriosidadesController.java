@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import br.com.ocorrenciasbr.dao.OcorrenciasDAO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
+import br.com.ocorrenciasbr.vo.OcorrenciaTotalTipoVO;
 
 
 public class CuriosidadesController extends HttpServlet{
@@ -27,10 +28,14 @@ public class CuriosidadesController extends HttpServlet{
 			ano = "2013";
 		}
 		
-			
+		
+		OcorrenciasDAO oc = new OcorrenciasDAO();
+		List<OcorrenciaTotalTipoVO> lista = oc.getTotalOcorrenciaTipo();
+		
 		request.setAttribute("page", "pages/curiosidades/curiosidades.jsp");
 		request.setAttribute("title", "Curiosidades - " + ano);
 		request.setAttribute("ano", ano);
+		request.setAttribute("listaTotalTipo", lista);
 		
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");
 		view.forward(request, response);
