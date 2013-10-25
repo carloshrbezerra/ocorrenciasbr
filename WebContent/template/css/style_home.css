@@ -3,7 +3,7 @@
 .box-geral{
 	-moz-border-radius: 6px;
 	border-radius: 6px;
-	width:358px;
+	width:100%;
 	height:330px;
 			
 }
@@ -14,7 +14,7 @@
 	background: #f1c30e;
 	border:3px solid #f1c30e;
 	float: left;
-	margin: 10px 10px;
+	margin: 10px 0px;
 }
 
 
@@ -23,7 +23,7 @@
 	background: #f1c30e;
 	border:1px solid #f1c30e;
 	float: left;
-	margin: 10px 10px;
+	margin: 10px 0px;
 }
 
 .box2{
@@ -31,7 +31,7 @@
 	background: #3598dc;
 	border:1px solid #3598dc;
 	float: left;
-	margin: 10px 10px;
+	margin: 10px 0px;
 }
 
 .box3{
@@ -39,7 +39,7 @@
 	background: #19bd9b;
 	border:1px solid #19bd9b;
 	float: left;
-	margin: 10px 10px;
+	margin: 10px 0px;
 }
 		
 .box img{
@@ -101,4 +101,9 @@ span h3{
 
 .container-ocorrencias hr{
 		
+}
+
+.container-map{
+	
+	height: 840px;
 }

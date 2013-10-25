@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.ocorrenciasbr.dao.OcorrenciasDAO;
+import br.com.ocorrenciasbr.util.ConnectionUtil;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalVO;
 
 
@@ -29,7 +30,7 @@ public class EstadoController extends HttpServlet {
 		String ano = request.getParameter("ano");
 		
 		if(ano == "" || ano == null){
-			ano = "2007";
+			ano = "2013";
 		}
 		
 		
@@ -92,6 +93,7 @@ public class EstadoController extends HttpServlet {
 		List<OcorrenciaTotalVO> listOcorrenciaAcidenteAtropelamento =   ocorrenciaDAO.getTotalOcorrenciaComAcidenteAtropelamento(estado, ano);
 		request.setAttribute("totalOcorrenciaAcidenteAtropelamento", this.calculaTotalOcorrencais(listOcorrenciaAcidenteAtropelamento));
 		request.setAttribute("listOcorrenciaAcidenteAtropelamento", preencheMeses(listOcorrenciaAcidenteAtropelamento));
+		
 		
 		
 		request.setAttribute("page", "pages/estados/estado.jsp");

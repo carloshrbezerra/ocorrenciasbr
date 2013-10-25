@@ -34,5 +34,16 @@
     <servlet-name>maps</servlet-name>
     <url-pattern>/maps.do</url-pattern>
   </servlet-mapping>
+  
+  
+  
+  <servlet>
+    <servlet-name>curiosidades</servlet-name>
+    <servlet-class>br.com.ocorrenciasbr.controller.CuriosidadesController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>curiosidades</servlet-name>
+    <url-pattern>/curiosidades.do</url-pattern>
+  </servlet-mapping>
  
 </web-app>

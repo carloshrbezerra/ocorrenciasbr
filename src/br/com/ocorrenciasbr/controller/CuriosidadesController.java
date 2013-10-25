@@ -15,7 +15,7 @@ import br.com.ocorrenciasbr.dao.OcorrenciasDAO;
 import br.com.ocorrenciasbr.vo.OcorrenciaTotalEstadoVO;
 
 
-public class OcorrenciaController extends HttpServlet{
+public class CuriosidadesController extends HttpServlet{
 	
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
@@ -27,15 +27,9 @@ public class OcorrenciaController extends HttpServlet{
 			ano = "2013";
 		}
 		
-		OcorrenciasDAO ocorrenciaDAO = new OcorrenciasDAO();
-		
-		//Numeto total de ocorrencias por estado
-		List<OcorrenciaTotalEstadoVO> listOcorrenciaTotalEstado  =  ocorrenciaDAO.getTotalOcorrenciaEstado(ano);
-		
-		request.setAttribute("listOcorrenciaTotalEstado", listOcorrenciaTotalEstado);
 			
-		request.setAttribute("page", "pages/ocorrencias/ocorrencias.jsp");
-		request.setAttribute("title", "Total de ocorrências por estados - " + ano);
+		request.setAttribute("page", "pages/curiosidades/curiosidades.jsp");
+		request.setAttribute("title", "Curiosidades - " + ano);
 		request.setAttribute("ano", ano);
 		
 		RequestDispatcher view = request.getRequestDispatcher("index.jsp");

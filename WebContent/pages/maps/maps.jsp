@@ -3,6 +3,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			
+		<div class="container-map" >
 		
 		<script type="text/javascript">	
 		var geocoder;
@@ -277,3 +278,4 @@
 		    
 		    </div>
     
+</div>

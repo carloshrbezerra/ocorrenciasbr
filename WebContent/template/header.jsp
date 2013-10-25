@@ -3,7 +3,7 @@
 	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="logo">
-			<a href=""> <img class="img-responsive" src="template/images/logo2.png">
+			<a href="http://www.ocorrenciasbr.com.br"> <img class="img-responsive" src="template/images/logo2.png">
 			</a>
 		</div>
 		<div class="navbar-header">
@@ -33,7 +33,7 @@
 				</li>
 			
 				
-				<li><a href="#">Curiosidades</a></li>
+				<li><a href="curiosidades.do?ano=2013">Curiosidades</a></li>
 				<li><a href="javascript:getLocation()" rel="modal">Minha Localização</a></li>
 			</ul>
 			
@@ -53,9 +53,38 @@
 	
 	
 		<%if(request.getAttribute("page") == null){%>
+		<!-- 
 				<div id="logo">
 					<img src="template/images/background.jpg" class="img-responsive"/>			
 				</div>
+		 -->
+				<div id="ad-1">
+					<div id="content">
+						<h2>Bem Vindo(a)</h2>
+						<h3>OcorrênciasBR.</h3>
+					</div>
+					<div id="clouds">
+						<ul id="cloud-group-1">
+							<li class="cloud-1"></li>
+							<li class="cloud-2"></li>
+							<li class="cloud-3"></li>
+						</ul>
+						<ul id="cloud-group-2">
+							<li class="cloud-1"></li>
+							<li class="cloud-2"></li>
+							<li class="cloud-3"></li>
+						</ul>
+					</div>
+					<ul id="driving">
+						<li>
+						</li>
+					</ul>
+					<ul id="road">
+						<li id="road-back"></li>
+						<li id="road-front"></li>
+					</ul>
+				</div>
+				
 		<%}%>
 
 	

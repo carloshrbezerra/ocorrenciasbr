@@ -17,6 +17,7 @@
 	<link rel="stylesheet" type="text/css" href="template/css/styles_charts.css">
 	<link rel="stylesheet" type="text/css" href="template/css/default.css" />
 	<link rel="stylesheet" type="text/css" href="template/css/component.css" />
+	<link rel="stylesheet" type="text/css" href="template/css/animacao.css">
 	<link rel="stylesheet" type="text/css" href="template/css/style_home.css" />
 	<link rel="stylesheet" type="text/css" href="template/css/style_maps.css" />
 	<script src="js/modernizr.custom.js"></script>
@@ -70,7 +71,7 @@
 		
 		<div id="mascara">
 		
-				<img src="template/images/ajax-loader_un.gif" class="window"/>
+				
   
 		</div>
 	

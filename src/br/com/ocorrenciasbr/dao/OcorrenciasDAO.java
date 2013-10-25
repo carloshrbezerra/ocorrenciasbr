@@ -598,7 +598,7 @@ public class OcorrenciasDAO {
         } finally {
         	ConnectionUtil.close(rs);
         	ConnectionUtil.close(statement);
-        	//ConnectionUtil.close(connection);
+        	ConnectionUtil.close(connection);
         }
         return totalOcorrenciaAlcoolVO;
     }

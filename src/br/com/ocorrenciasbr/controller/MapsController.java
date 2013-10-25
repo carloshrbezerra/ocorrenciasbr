@@ -32,7 +32,7 @@ public class MapsController extends HttpServlet {
 		String ano = request.getParameter("ano");
 		
 		if(ano == "" || ano == null){
-			ano = "2007";
+			ano = "2013";
 		}
 		
 		
