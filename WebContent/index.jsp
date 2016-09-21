@@ -2,10 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<!DOCTYPE html>
 <html>
 <head>
-	<title>Ocorrências BR</title>
+	<title>OcorrÃªncias BR</title>
 	
 	<meta charset="UTF-8">
 	<meta name="description" content="">
